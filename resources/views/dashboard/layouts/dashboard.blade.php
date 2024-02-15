@@ -240,10 +240,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Simple Link
-                {{-- <span class="right badge badge-danger">New</span> --}}
               </p>
             </a>
           </li>
+          
+
+          <li class="nav-item">
+            <a href="{{route('role.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Roles
+              </p>
+            </a>
+          </li>
+
+
+
+
+
           <li class="nav-item pt-5">
               <form method="POST" action="{{ route('logout') }} " style="display:inline">
                 @csrf

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\RolesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,13 @@ Route::middleware(['auth:user,admin'])->prefix('dashboard')->group(function () {
 
     Route::get('/admin', [DashboardController::class, 'indexAdmin'])->name('dashboard.index.admin');
     Route::get('/user', [DashboardController::class, 'indexUser'])->name('dashboard.index.user');
+
+    Route::prefix('roles')->group(function(){
+        Route::get('/', [RolesController::class, 'index'])->name('role.index');
+        Route::get('/create', [RolesController::class, 'create'])->name('role.create');
+        Route::post('/store', [RolesController::class, 'store'])->name('role.store');
+        Route::get('/edit/{role}', [RolesController::class, 'edit'])->name('role.edit');
+        Route::post('/roles/{role}', [RolesController::class, 'update'])->name('role.update');
+        Route::delete('/delete/{role}', [RolesController::class, 'destroy'])->name('role.destroy');
+    });
 });
