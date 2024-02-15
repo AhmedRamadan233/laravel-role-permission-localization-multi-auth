@@ -18,6 +18,7 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
+        
         $validated = $request->validated();
 
         $loginType = filter_var($validated['email_or_phone'], FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
@@ -27,10 +28,13 @@ class LoginController extends Controller
             'password' => $validated['password'],
         ];
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard.index')->with('success', true);
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->route('dashboard.index.admin')->with('success', true);
         }
-
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboard.index.user')->with('success', true);
+        }
+    
         return back()->withInput()->withErrors(['email_or_phone' => 'Invalid credentials']);
     }
 

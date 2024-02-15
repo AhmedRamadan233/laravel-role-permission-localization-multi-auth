@@ -19,19 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
     Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
-    Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.attempt');
 });
 
 
-Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+Route::middleware(['auth:user,admin'])->prefix('dashboard')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
-
-
-    
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/admin', [DashboardController::class, 'indexAdmin'])->name('dashboard.index.admin');
+    Route::get('/user', [DashboardController::class, 'indexUser'])->name('dashboard.index.user');
 });
