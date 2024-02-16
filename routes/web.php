@@ -27,11 +27,16 @@ Route::prefix('auth')->group(function () {
 });
 
 
-Route::middleware(['auth:user,admin'])->prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/admin', [DashboardController::class, 'indexAdmin'])->name('dashboard.index.admin');
-    Route::get('/user', [DashboardController::class, 'indexUser'])->name('dashboard.index.user');
+    Route::middleware(['checkrole:super_admin'])->group(function () {
+        Route::get('/admin', [DashboardController::class, 'indexAdmin'])->name('dashboard.index.admin');
+    });
+    
+    Route::middleware(['checkrole:super_admin,user'])->group(function () {
+        Route::get('/user', [DashboardController::class, 'indexUser'])->name('dashboard.index.user');
+    });
 
     Route::prefix('roles')->group(function(){
         Route::get('/', [RolesController::class, 'index'])->name('role.index');

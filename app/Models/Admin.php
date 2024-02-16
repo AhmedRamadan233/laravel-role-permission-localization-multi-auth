@@ -1,32 +1,39 @@
 <?php
 
-namespace App\Models;
+// namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+// use App\Traits\HasRoles;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Notifications\Notifiable;
+// use Laravel\Sanctum\HasApiTokens;
 
-class Admin extends Authenticatable
-{
-    use HasFactory, Notifiable;
+// class Admin extends Authenticatable
+// {
+//     use HasApiTokens, HasFactory, Notifiable , HasRoles;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone'
-    ];
+//     protected $fillable = [
+//         'name',
+//         'email',
+//         'password',
+//         'phone'
+//     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+//     protected $hidden = [
+//         'password',
+//         'remember_token',
+//     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+//     protected $casts = [
+//         'email_verified_at' => 'datetime',
+//     ];
 
-    protected $guard = 'admin';
+//     protected $guard = 'admin';
 
-}
+
+//     // public function roles()
+//     // {
+//     //     return $this->morphToMany(Role::class, 'authorizable');
+//     // }
+
+// }

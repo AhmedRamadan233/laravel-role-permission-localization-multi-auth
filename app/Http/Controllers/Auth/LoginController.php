@@ -18,26 +18,27 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        
         $validated = $request->validated();
-
+    
         $loginType = filter_var($validated['email_or_phone'], FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
-
+    
         $credentials = [
             $loginType => $validated['email_or_phone'],
             'password' => $validated['password'],
         ];
-
-        if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->route('dashboard.index.admin')->with('success', true);
-        }
+    
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard.index.user')->with('success', true);
+            $user = Auth::user();
+            if ($user->role === 'super_admin') {
+                return redirect()->route('dashboard.index.admin')->with('success', true);
+            } else {
+                return redirect()->route('dashboard.index.user')->with('success', true);
+            }
         }
     
         return back()->withInput()->withErrors(['email_or_phone' => 'Invalid credentials']);
     }
-
+    
 
     public function logout()
     {

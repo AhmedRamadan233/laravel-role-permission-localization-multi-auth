@@ -5,29 +5,47 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\RoleAbility;
+use App\Models\User;
+use App\Traits\AuthorizeAccess;
+use App\Traits\HasRoles;
 use App\Traits\PermissionTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class RolesController extends Controller
 {
+    use AuthorizeAccess;
 
 
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(Role::class, 'role');    
-    // }
 
     // use PermissionTrait;
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     if ($user->hasAbility('roles.index')) {
+    //         $roles = Role::all();
+    //     //   dd($roles);
+    //     return view('dashboard.pages.roles.role' , compact('roles'));
+    //     } else {
+    //         // Deny access for users without the 'admin' role
+    //         abort(403, 'Unauthorized action.');
+    //     }
+       
+    // }
+
+
     public function index()
     {
+        $this->authorizeAccess('roles.index');
+            
         $roles = Role::all();
-
-        return view('dashboard.pages.roles.role' , compact('roles'));
+        return view('dashboard.pages.roles.role', compact('roles'));   
     }
 
+       
     /**
      * Show the form for creating a new resource.
      */
@@ -64,7 +82,7 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        $role_abilities = $role->roleAbilities()->pluck('type', 'ability')->toArray();
+        $role_abilities = $role->abilities()->pluck('type', 'ability')->toArray();
         return view('dashboard.pages.roles.edit', compact('role' , 'role_abilities'));
 
     }

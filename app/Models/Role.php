@@ -69,9 +69,21 @@ class Role extends Model
     }
 
 
-    public function roleAbilities()
+    public function abilities()
     {
         return $this->hasMany(RoleAbility::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+    
+
+
+    // public function admins()
+    // {
+    //     return $this->morphedByMany(Admin::class, 'authorizable');
+    // }
    
 }

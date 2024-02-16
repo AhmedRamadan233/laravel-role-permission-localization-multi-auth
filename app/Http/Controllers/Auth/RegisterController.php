@@ -27,6 +27,6 @@ class RegisterController extends Controller
 
         $user = User::create($validatedData);
 
-        return redirect()->route('dashboard.index');
+        return redirect()->route('dashboard.index.user');
     }
 }
