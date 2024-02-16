@@ -264,7 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           
-
+          @can('roles.index')
           <li class="nav-item">
             <a href="{{route('role.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -273,8 +273,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @endcan
           
-
+         
           <li class="nav-item">
             <a href="{{route('profile.edit')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -283,16 +284,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
-
-          <li class="nav-item">
-            <a href="{{route('user.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                {{__('All Users')}}
-              </p>
-            </a>
-          </li>
-
+         
+          @can('role_user.index')
           <li class="nav-item">
             <a href="{{route('role_user.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -301,7 +294,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
-
+          @endcan
+          @can('user.index')
+          <li class="nav-item">
+            <a href="{{route('user.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                {{__('All Users')}}
+              </p>
+            </a>
+          </li>  
+          @endcan
 
           <li class="nav-item pt-5">
               <form method="POST" action="{{ route('logout') }} " style="display:inline">

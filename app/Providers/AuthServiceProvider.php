@@ -41,12 +41,12 @@ class AuthServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        // $this->registerPolicies();
+        $this->registerPolicies();
 
-        // foreach (config('abilities') as $permission => $label) {
-        //     Gate::define($permission, function (User $user) use ($permission) {
-        //         return $user->hasAbility($permission);
-        //     });
-        // }
+        foreach (config('abilities') as $permission => $label) {
+            Gate::define($permission, function (User $user) use ($permission) {
+                return $user->hasAbility($permission);
+            });
+        }
     }
 }

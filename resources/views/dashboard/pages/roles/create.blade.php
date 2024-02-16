@@ -29,31 +29,28 @@
                         <div class="form-group">
                             <label for="abilities">{{__('Abilities')}}</label><br>
                             @foreach (config('abilities') as $ability_code => $ability_description)
-                                @if (is_array($ability_description))
-                                    @foreach ($ability_description as $key => $value)
-                                        <div class="row mb-3">
-                                            <div class="col">{{ $value }}</div>
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">{{__('allow')}}</label>
-                                                    <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="allow">
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">{{__('deny')}}</label>
-                                                    <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="deny">
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">{{__('inherit')}}</label>
-                                                    <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="inherit">
-                                                </div>
-                                            </div>
+
+                                <div class="row mb-3">
+                                    <div class="col">{{ $ability_code }}</div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <label class="form-check-label">{{__('allow')}}</label>
+                                            <input class="form-check-input" type="radio" name="abilities[{{ $ability_code }}]" value="allow">
                                         </div>
-                                    @endforeach
-                                @endif
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <label class="form-check-label">{{__('deny')}}</label>
+                                            <input class="form-check-input" type="radio" name="abilities[{{ $ability_code }}]" value="deny">
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="form-check">
+                                            <label class="form-check-label">{{__('inherit')}}</label>
+                                            <input class="form-check-input" type="radio" name="abilities[{{ $ability_code }}]" value="inherit">
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </div>
                         

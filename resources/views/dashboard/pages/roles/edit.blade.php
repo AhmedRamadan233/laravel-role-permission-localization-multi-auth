@@ -29,33 +29,29 @@
                     
                         <div class="form-group">
                             <label for="abilities">{{__('Abilities')}}</label><br>
-                            @foreach (config('abilities') as $ability_code => $ability_description)
-                                @if (is_array($ability_description))
-                                    @foreach ($ability_description as $key => $value)
-                                        <div class="row mb-3">
-                                            <div class="col">{{ $value }}</div>
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">{{__('allow')}}</label>
-                                                    <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="allow" {{ ($role_abilities[$key] ?? null) == 'allow' ? 'checked' : '' }}>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">{{__('deny')}}</label>
-                                                    <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="deny" {{ ($role_abilities[$key] ?? null) == 'deny' ? 'checked' : '' }}>
-                                                </div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">{{__('inherit')}}</label>
-                                                    <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="inherit" {{ ($role_abilities[$key] ?? null) == 'inherit' ? 'checked' : '' }}>
-                                                </div>
+                                @foreach (config('abilities') as $ability_code => $ability_description)
+                                    <div class="row mb-3">
+                                        <div class="col">{{ $ability_description }}</div>
+                                        <div class="col-auto">
+                                            <div class="form-check">
+                                                <label class="form-check-label">{{__('allow')}}</label>
+                                                <input class="form-check-input" type="radio" name="abilities[{{ $ability_code }}]" value="allow" {{ ($role_abilities[$ability_code] ?? null) == 'allow' ? 'checked' : '' }}>
                                             </div>
                                         </div>
-                                    @endforeach
-                                @endif
-                            @endforeach
+                                        <div class="col-auto">
+                                            <div class="form-check">
+                                                <label class="form-check-label">{{__('deny')}}</label>
+                                                <input class="form-check-input" type="radio" name="abilities[{{ $ability_code }}]" value="deny" {{ ($role_abilities[$ability_code] ?? null) == 'deny' ? 'checked' : '' }}>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="form-check">
+                                                <label class="form-check-label">{{__('inherit')}}</label>
+                                                <input class="form-check-input" type="radio" name="abilities[{{ $ability_code }}]" value="inherit" {{ ($role_abilities[$ability_code] ?? null) == 'inherit' ? 'checked' : '' }}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                         </div>
                     
                         <button type="submit" class="btn btn-primary">{{__('Update')}}</button>

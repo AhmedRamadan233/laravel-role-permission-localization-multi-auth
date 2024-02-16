@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Gate;
 class RolesController extends Controller
 {
     use AuthorizeAccess;
-
     public function index()
     {
         $this->authorizeAccess('roles.index');
-        $roles = Role::all();
+        $roles = Role::with('abilities')->get();
+        // dd( $roles );
         return view('dashboard.pages.roles.role', compact('roles'));   
     }
 
@@ -30,6 +30,8 @@ class RolesController extends Controller
      */
     public function create()
     {
+        $this->authorizeAccess('role.create');
+
         $roles = Role::all();
         return view('dashboard.pages.roles.create' , compact('roles') );
     }
@@ -39,7 +41,8 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $this->authorizeAccess('roles.store');
+
         $request->validate([
             'name' => 'required|string|max:255',
             'abilities' => 'required|array',
@@ -58,6 +61,8 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
+        $this->authorizeAccess('roles.edit');
+
         $role_abilities = $role->abilities()->pluck('type', 'ability')->toArray();
         return view('dashboard.pages.roles.edit', compact('role' , 'role_abilities'));
 
@@ -68,6 +73,8 @@ class RolesController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        $this->authorizeAccess('roles.update');
+
         $request->validate([
             'name' => 'required|string|max:255',
             'abilities' => 'required|array',
@@ -88,6 +95,8 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorizeAccess('roles.delete');
+
         Role::destroy($id);
         return redirect()
             ->route('role.index')

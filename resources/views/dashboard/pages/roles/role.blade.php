@@ -32,7 +32,9 @@
                             <button type="submit" class="btn btn-primary mx-2">{{__('Search')}}</button>
                         </form>
                         <div>
+                            @can('role.create')
                             <a href="{{route('role.create')}}" class="btn btn-primary">{{__('Add New Role')}}</a>
+                            @endcan
                         </div>
                     </div>
                 </div>
@@ -53,12 +55,16 @@
                                     <td>{{$role->name}}</td>
                                     
                                     <td>
+                                        @can('roles.edit')
                                         <a href="{{ route('role.edit', ['role' => $role->id]) }}" class="btn btn-primary">{{__('Edit')}}</a> |
+                                        @endcan
+                                        @can('roles.delete')
                                         <form action="{{ route('role.destroy', ['role' => $role->id]) }}" method="post" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
                                         </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
@@ -71,4 +77,8 @@
             </div>
         </div>
     </div>
+
+
+
+
 @endsection

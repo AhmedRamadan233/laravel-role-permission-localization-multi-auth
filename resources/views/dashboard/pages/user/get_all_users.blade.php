@@ -34,12 +34,14 @@
                                     <td>{{$user->profile->first_name . " " . $user->profile->last_name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>
-                                       
+                                       @can('user.destroy')
                                         <form action="{{ route('user.destroy', ['user' => $user->id]) }}" method="post" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
                                         </form> 
+                                       @endcan
+                                        
                                     </td>
                                 </tr>
                             @endforeach
