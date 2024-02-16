@@ -17,30 +17,9 @@ class RolesController extends Controller
 {
     use AuthorizeAccess;
 
-
-
-    // use PermissionTrait;
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     if ($user->hasAbility('roles.index')) {
-    //         $roles = Role::all();
-    //     //   dd($roles);
-    //     return view('dashboard.pages.roles.role' , compact('roles'));
-    //     } else {
-    //         // Deny access for users without the 'admin' role
-    //         abort(403, 'Unauthorized action.');
-    //     }
-       
-    // }
-
-
     public function index()
     {
         $this->authorizeAccess('roles.index');
-            
         $roles = Role::all();
         return view('dashboard.pages.roles.role', compact('roles'));   
     }
@@ -52,9 +31,6 @@ class RolesController extends Controller
     public function create()
     {
         $roles = Role::all();
-        // $items = $this->items;
-        // foreach($items as $item)
-        // dd($item['roles.index']);
         return view('dashboard.pages.roles.create' , compact('roles') );
     }
 

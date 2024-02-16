@@ -244,7 +244,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           
-          {{-- @if(Auth::user()->can('roles.index')) --}}
+
           <li class="nav-item">
             <a href="{{route('role.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -253,8 +253,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
-          {{-- @endif --}}
+          
 
+          <li class="nav-item">
+            <a href="{{route('profile.edit')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Edit profile
+              </p>
+            </a>
+          </li>
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\RolesController;
@@ -46,4 +47,10 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/roles/{role}', [RolesController::class, 'update'])->name('role.update');
         Route::delete('/delete/{role}', [RolesController::class, 'destroy'])->name('role.destroy');
     });
+
+    Route::prefix('profile')->group(function(){
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
+
 });
