@@ -182,14 +182,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <img src="{{asset ('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">{{__('AdminLTE 3')}}</span>
     </a>
-    <div class="select-position">
-      <form id="localeForm" action="{{ URL::current() }}" method="get">
-        <select id="localeSelect" name="locale">
-          <option value="en" selected>English</option>
-          <option value="ar">العربية</option>
-        </select>
-      </form>
-    </div>
+    <form id="localeForm" action="{{ URL::current() }}" method="get">
+      <select id="localeSelect" name="locale">
+          <option value="0" {{ app()->getLocale() == '0' ? 'selected' : '' }}>select lang</option>
+          <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+          <option value="ar" {{ app()->getLocale() == 'ar' ? 'selected' : '' }}>العربية</option>
+      </select>
+  </form>
     
     
       
@@ -387,7 +386,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('toastr/toastr.min.js') }}"></script>
-<script>
+{{-- <script>
   $(document).ready(function() {
     $("#localeSelect").change(function() {
       var currentValue = $(this).val();
@@ -396,6 +395,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
         currentUrl.searchParams.set("locale", currentValue);
         window.location.href = currentUrl.toString();
       }
+    });
+  });
+</script> --}}
+<script>
+  $(document).ready(function() {
+    $("#localeSelect").change(function() {
+      var currentValue = $(this).val();
+      $.ajax({
+        url: '{{ URL::current() }}',
+        type: 'GET',
+        data: { locale: currentValue },
+        success: function(data) {
+          console.log('correct');
+
+          window.location.reload(); 
+        },
+        error: function(xhr, status, error) {
+          console.error('An error occurred while updating locale:', error);
+        }
+      });
     });
   });
 </script>
