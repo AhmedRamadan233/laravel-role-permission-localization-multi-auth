@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\RolesOfUsers;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,11 +48,30 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/edit/{role}', [RolesController::class, 'edit'])->name('role.edit');
         Route::post('/roles/{role}', [RolesController::class, 'update'])->name('role.update');
         Route::delete('/delete/{role}', [RolesController::class, 'destroy'])->name('role.destroy');
+        
     });
+
+    Route::prefix('role_user')->group(function(){
+        Route::get('/', [RolesOfUsers::class, 'index'])->name('role_user.index');
+        Route::get('/create', [RolesOfUsers::class, 'RoleUserCreate'])->name('role_user.create');
+        Route::post('/store', [RolesOfUsers::class, 'store'])->name('role_user.store');
+        Route::get('/edit/{role_user}', [RolesOfUsers::class, 'edit'])->name('role_user.edit');
+        Route::post('/roles/{role_user}', [RolesOfUsers::class, 'update'])->name('role_user.update');
+        Route::delete('/destroy/{role_user}', [RolesOfUsers::class, 'destroy'])->name('role_user.destroy');
+        
+    });
+
+
+
 
     Route::prefix('profile')->group(function(){
         Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
+
+    Route::prefix('users')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->name('user.index');
+        Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
     });
 
 });
