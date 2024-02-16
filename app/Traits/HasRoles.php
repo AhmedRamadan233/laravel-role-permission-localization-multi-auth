@@ -9,9 +9,13 @@ trait HasRoles
 
     public function hasAbility($ability)
     {
+        if ($this->isSuperAdmin()) {
+            return true;
+        }
+
         $denied = $this->roles()->whereHas('abilities', function ($query) use ($ability) {
             $query->where('ability', $ability)
-                  ->where('type', '=', 'deny');
+                ->where('type', '=', 'deny');
         })->exists();
 
         if ($denied) {
@@ -20,7 +24,12 @@ trait HasRoles
 
         return $this->roles()->whereHas('abilities', function ($query) use ($ability) {
             $query->where('ability', $ability)
-                  ->where('type', '=', 'allow');
+                ->where('type', '=', 'allow');
         })->exists();
+    }
+
+    protected function isSuperAdmin()
+    {
+        return $this->role === 'super_admin';
     }
 }
