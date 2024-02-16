@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.dashboard')
 
-@section('title', 'Roles Pages')
+@section('title', __('Roles Page'))
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active"> Roles Page</li>
+    <li class="breadcrumb-item active"> {{__('Roles Page')}}</li>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <form action="{{ route('role.index') }}" method="get" class="form-inline">
                             <div class="form-group mx-2">
-                                <label for="name" class="sr-only">Search by Name</label>
+                                <label for="name" class="sr-only">{{__('Search by Name')}}</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="name" placeholder="Search by name..." name="name" value="">
                                     <div class="input-group-append">
@@ -29,10 +29,10 @@
                 
                             
                 
-                            <button type="submit" class="btn btn-primary mx-2">Search</button>
+                            <button type="submit" class="btn btn-primary mx-2">{{__('Search')}}</button>
                         </form>
                         <div>
-                            <a href="{{route('role.create')}}" class="btn btn-primary">Add New Role</a>
+                            <a href="{{route('role.create')}}" class="btn btn-primary">{{__('Add New Role')}}</a>
                         </div>
                     </div>
                 </div>
@@ -41,9 +41,9 @@
                     <table id="product-table" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Action</th>
+                                <th>{{__('ID')}}</th>
+                                <th>{{__('Name')}}</th>
+                                <th>{{__('Action')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,11 +53,11 @@
                                     <td>{{$role->name}}</td>
                                     
                                     <td>
-                                        <a href="{{ route('role.edit', ['role' => $role->id]) }}" class="btn btn-primary">Edit</a> |
+                                        <a href="{{ route('role.edit', ['role' => $role->id]) }}" class="btn btn-primary">{{__('Edit')}}</a> |
                                         <form action="{{ route('role.destroy', ['role' => $role->id]) }}" method="post" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -66,7 +66,7 @@
                     </table>
                 </div>
                 <div class="card-footer text-center">
-                    <h5 class="m-0">Featured</h5>
+                    <h5 class="m-0">{{__('Featured')}}</h5>
                 </div>
             </div>
         </div>

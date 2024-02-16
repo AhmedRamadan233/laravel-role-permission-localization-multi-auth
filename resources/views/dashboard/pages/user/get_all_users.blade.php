@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.dashboard')
 
-@section('title', 'Users Pages')
+@section('title', __('User Page'))
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active"> Users Page</li>
+    <li class="breadcrumb-item active"> {{__('User Page')}}</li>
 @endsection
 
 @section('content')
@@ -13,27 +13,7 @@
             <div class="card card-primary card-outline">
                 
                 <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        {{-- <form action="{{ route('role.index') }}" method="get" class="form-inline">
-                            <div class="form-group mx-2">
-                                <label for="name" class="sr-only">Search by Name</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="name" placeholder="Search by name..." name="name" value="">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-search"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                
-                            
-                
-                            <button type="submit" class="btn btn-primary mx-2">Search</button>
-                        </form> --}}
-                        <div>
-                            {{-- <a href="{{route('role.create')}}" class="btn btn-primary">Add New Role</a> --}}
-                        </div>
+                    <div class="d-flex justify-content-between align-items-center">                        
                     </div>
                 </div>
                 
@@ -41,10 +21,10 @@
                     <table id="product-table" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Full Name</th>
-                                <th>Email</th>
-                                <th>Action</th>
+                                <th>{{__('ID')}}</th>
+                                <th>{{__('Full Name')}}</th>
+                                <th>{{__('Email')}}</th>
+                                <th>{{__('Action')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +38,7 @@
                                         <form action="{{ route('user.destroy', ['user' => $user->id]) }}" method="post" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
                                         </form> 
                                     </td>
                                 </tr>
@@ -67,7 +47,7 @@
                     </table>
                 </div>
                 <div class="card-footer text-center">
-                    <h5 class="m-0">Featured</h5>
+                    <h5 class="m-0">{{__('Featured')}}</h5>
                 </div>
             </div>
         </div>

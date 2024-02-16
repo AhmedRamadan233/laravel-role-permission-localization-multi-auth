@@ -21,7 +21,6 @@ class SetAppLocal
         $locale = request('locale', Cookie::get('locale', config('app.locale')));
         App::setLocale($locale);
         Cookie::queue('locale', $locale, 60 * 24 * 365);
-        // dd($locale);
         
         return $next($request);
     }

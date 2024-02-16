@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.dashboard')
 
-@section('title', 'Create Role To User Page')
+@section('title', __('Create Role To User Page'))
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active"> Create Role To User Page</li>
+    <li class="breadcrumb-item active"> {{__('Create Role To User Page')}}</li>
 @endsection
 
 @section('content')
@@ -12,16 +12,16 @@
         <div class="col-lg-12">
             <div class="card card-primary card-outline">
                 <div class="card-header text-center">
-                    <h2 class="m-0"> Create Role To User Page</h2>
+                    <h2 class="m-0"> {{__('Create Role To User Page')}}</h2>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('role_user.store') }}" method="post">
                         @csrf
                     
                         <div class="form-group">
-                            <label for="user">Select User:</label>
+                            <label for="user">{{__('Select User:')}}</label>
                             <select name="user" id="user" class="form-control">
-                                <option value="">Select User</option>
+                                <option value="">{{__('Select User')}}</option>
                                 @foreach($users as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
@@ -29,9 +29,9 @@
                         </div>
                     
                         <div class="form-group">
-                            <label for="role">Select Role:</label>
+                            <label for="role">{{__('Select Role:')}}</label>
                             <select name="role" id="role" class="form-control">
-                                <option value="">Select Role</option>
+                                <option value="">{{__('Select Role:')}}</option>
                                 @foreach($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
@@ -39,7 +39,7 @@
                         </div>
                         
                         
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">{{__('Add')}}</button>
                     </form>
                     
                     

@@ -4,7 +4,7 @@
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active"> Create Role Page</li>
+    <li class="breadcrumb-item active">{{__('Create Role Page')}}</li>
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             <div class="card card-primary card-outline">
                 <div class="card-header text-center">
-                    <h2 class="m-0"> Create New Role</h2>
+                    <h2 class="m-0"> {{__('Create New Role')}}</h2>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('role.store') }}" method="post">
@@ -27,7 +27,7 @@
                         </div>
                     
                         <div class="form-group">
-                            <label for="abilities">Abilities</label><br>
+                            <label for="abilities">{{__('Abilities')}}</label><br>
                             @foreach (config('abilities') as $ability_code => $ability_description)
                                 @if (is_array($ability_description))
                                     @foreach ($ability_description as $key => $value)
@@ -35,19 +35,19 @@
                                             <div class="col">{{ $value }}</div>
                                             <div class="col-auto">
                                                 <div class="form-check">
-                                                    <label class="form-check-label">allow</label>
+                                                    <label class="form-check-label">{{__('allow')}}</label>
                                                     <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="allow">
                                                 </div>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="form-check">
-                                                    <label class="form-check-label">deny</label>
+                                                    <label class="form-check-label">{{__('deny')}}</label>
                                                     <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="deny">
                                                 </div>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="form-check">
-                                                    <label class="form-check-label">inherit</label>
+                                                    <label class="form-check-label">{{__('inherit')}}</label>
                                                     <input class="form-check-input" type="radio" name="abilities[{{ $key }}]" value="inherit">
                                                 </div>
                                             </div>
@@ -59,7 +59,7 @@
                         
                         
                         
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">{{__('Add')}}</button>
                     </form>
                     
                     
