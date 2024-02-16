@@ -4,7 +4,7 @@
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active">Starter Page</li>
+    <li class="breadcrumb-item active">{{__('Starter Page')}}</li>
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
     <div class="col-lg-6">
         <div class="card card-primary card-outline">
             <div class="card-header">
-              <h5 class="m-0">Featured</h5>
+              <h5 class="m-0">{{__('Featured')}}</h5>
             </div>
             <div class="card-body">
               <h6 class="card-title">Special title treatment</h6>

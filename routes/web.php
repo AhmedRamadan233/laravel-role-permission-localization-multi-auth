@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\LocaleController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\RolesOfUsers;
 use App\Http\Controllers\Dashboard\UserController;
@@ -73,5 +74,8 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('user.index');
         Route::delete('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
     });
+
+
+
 
 });

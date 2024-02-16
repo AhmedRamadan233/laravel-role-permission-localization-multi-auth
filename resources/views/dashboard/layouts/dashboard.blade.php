@@ -34,10 +34,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="index3.html" class="nav-link">{{__('Home')}}</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link">{{__('Contact')}}</a>
       </li>
     </ul>
 
@@ -120,7 +120,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Message End -->
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+          <a href="#" class="dropdown-item dropdown-footer">{{__('See All Messages')}}</a>
         </div>
       </li>
 
@@ -180,9 +180,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset ('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">{{__('AdminLTE 3')}}</span>
     </a>
-
+    <div class="select-position">
+      <form id="localeForm" action="{{ URL::current() }}" method="get">
+        <select id="localeSelect" name="locale">
+          <option value="en" selected>English</option>
+          <option value="ar">العربية</option>
+        </select>
+      </form>
+    </div>
+    
+    
+      
+    
+   
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -252,7 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{route('role.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Roles
+                {{__('Roles')}}
               </p>
             </a>
           </li>
@@ -262,7 +274,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{route('profile.edit')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Edit profile
+                {{__('Edit profile')}}
               </p>
             </a>
           </li>
@@ -271,7 +283,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{route('user.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                All Users
+                {{__('All Users')}}
               </p>
             </a>
           </li>
@@ -280,7 +292,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{route('role_user.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Role Of Users
+                {{__('Role Of Users')}}
               </p>
             </a>
           </li>
@@ -291,7 +303,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @csrf
                 <button type="submit" class="btn btn-danger">
                     <p>
-                        Logout
+                      {{__('Logout')}}
                     </p>
                 </button>
             </form>
@@ -317,7 +329,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               @section('breadcrumb')
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">{{__('Home')}}</a></li>
               @show
             </ol>
           </div><!-- /.col -->
@@ -342,8 +354,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
     <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
+      <h5>{{__('Title')}}</h5>
+      <p>{{__('Sidebar content')}}</p>
     </div>
   </aside>
   <!-- /.control-sidebar -->
@@ -352,7 +364,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      {{__('Anything you want')}}
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
@@ -375,7 +387,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('datatable/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('toastr/toastr.min.js') }}"></script>
-
+<script>
+  $(document).ready(function() {
+    $("#localeSelect").change(function() {
+      var currentValue = $(this).val();
+      var currentUrl = new URL(window.location.href);
+      if (currentValue !== currentUrl.searchParams.get("locale")) {
+        currentUrl.searchParams.set("locale", currentValue);
+        window.location.href = currentUrl.toString();
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
